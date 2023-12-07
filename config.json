@@ -1,0 +1,6 @@
+{
+  "env": {
+    "dev": true,
+    "svr_hostname": "srv442857"
+  }
+}
