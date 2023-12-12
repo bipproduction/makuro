@@ -17,5 +17,6 @@ require('colors');
     const child = exec(`curl -s -o- -X POST -H "Content-Type: application/json" -d '${body}' ${url_host}/app | node - ${arg.join(" ")}`)
     child.stdout.on("data", console.log)
     child.stderr.on("data", data => console.log(`${data}`.yellow))
+    
 })()
 
