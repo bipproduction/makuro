@@ -45,7 +45,7 @@ function help() {
 MAKURO BUILD APP
 Vesion: 1.0.0
 
-${box(column(list_menu.map((v) => ({ ..._.omit(v, ['fun']) }))))}
+${column(list_menu.map((v) => ({ ..._.omit(v, ['fun']) })))}
 `)
 }
 

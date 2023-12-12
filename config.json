@@ -1,6 +1,21 @@
 {
+  "dev": true,
+  "svr_hostname": "srv442857",
   "env": {
-    "dev": true,
-    "svr_hostname": "srv442857"
+    "server": {
+      "protocol": "https",
+      "host": "wibudev.wibudev.com",
+      "prt": null,
+      "path": "https://wibudev.wibudev.com"
+    },
+    "local": {
+      "protocol": "http",
+      "host": "localhost",
+      "port": 3004,
+      "path": "http://localhost:3004"
+    }
+  },
+  "app_env": {
+    "app_url": "https://wibudev.wibudev.com/app"
   }
 }

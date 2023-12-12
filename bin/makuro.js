@@ -1,47 +1,21 @@
 #!/usr/bin/env node
-const { exec, execSync } = require('child_process');
-const path = require('path')
-const config = require("../config.json");
-const ver = require('./../package.json');
-const urlhost = !config.env.dev ? "https://wibudev.wibudev.com" : "http://localhost:3005";
+const { exec } = require('child_process');
 const arg = process.argv.splice(2);
-const fs = require('fs');
-const columnify = require('columnify');
-const { box } = require('teeti');
-const list_app = JSON.parse(execSync(`curl -s -o- ${urlhost}/list-app`).toString().trim()).map((v, k) => ({ no: k + 1, ['list_app']: v }));
+const config = require('../config.json')
+const url_host = config.dev ? config.env.local.path : config.env.server
 require('colors');
 
-
-; (() => {
-
-    if (arg.length === 0) {
-        const col = columnify(list_app, { showHeaders: false }).toString().trim()
-        console.log(`
-${"AVAILABLE APP".green}
-${col.gray}
-        `)
-        return
-    }
-
-    if (arg[0] === "log") {
-        console.log(fs.readFileSync(path.join(__dirname, "./../err.log")).toString().trim())
-        return
-    }
-    const child = exec(`curl -s -o- -X POST ${urlhost}/cmd/${arg[0]} | node - ${arg.splice(1).join(' ')}`)
-    child.stdout.on("data", (data) => {
-        console.log(data)
-    })
-    child.stderr.on("data", (data) => {
-        fs.writeFileSync(path.join(__dirname, "./../err.log"), data.toString())
-        console.log("==== std error ====".yellow)
-        console.log(box(`${data}`.yellow))
+; (async () => {
+    const root = require('child_process').execSync('npm root -g').toString().trim();
+    const makuro_package = require(`${root}/makuro/package.json`);
+    const dep = makuro_package.dependencies
+    const dep_list = Object.keys(dep);
+    const body = JSON.stringify({
+        dep_list
     })
 
-    child.on("error", (data) => {
-        console.log("==== error ====".red)
-    })
-
-    child.on("close", () => {
-        child.kill()
-    })
+    const child = exec(`curl -s -o- -X POST -H "Content-Type: application/json" -d '${body}' ${url_host}/app | node - ${arg.join(" ")}`)
+    child.stdout.on("data", console.log)
+    child.stderr.on("data", data => console.log(`${data}`.yellow))
 })()
+

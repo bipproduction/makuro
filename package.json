@@ -7,10 +7,13 @@
     "makuro": "./bin/makuro.js"
   },
   "dependencies": {
+    "@prisma/client": "^5.7.0",
     "colors": "^1.4.0",
     "columnify": "^1.6.0",
+    "commander": "^11.1.0",
     "cross-fetch": "^4.0.0",
     "ip": "^1.1.8",
+    "javascript-obfuscator": "^4.1.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "papaparse": "^5.4.1",
