@@ -5,23 +5,33 @@ const arg = process.argv.splice(2);
 const config = JSON.parse(execSync(`curl -s -o- -X POST https://wibudev.wibudev.com/svr/config`).toString().trim())
 const url_host = config.dev ? config.url_local : config.url_server
 const { box } = require('teeti');
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+
 const loading = require('loading-cli');
+const root = require('child_process').execSync('npm root -g').toString().trim();
 
-; (async () => {
+async function main() {
     const load = loading("loading ...").start();
-    await prisma.config.upsert({
-        where: {
-            id: 1
-        },
-        create: { ...config },
-        update: { ...config }
-    })
-
     if (config.dev) console.log(box("DEV MODE"))
 
-    const root = require('child_process').execSync('npm root -g').toString().trim();
+    try {
+        const { PrismaClient } = require('@prisma/client');
+        const prisma = new PrismaClient();
+        await prisma.config.upsert({
+            where: {
+                id: 1
+            },
+            create: { ...config },
+            update: { ...config }
+        })
+
+    } catch (error) {
+        console.log("load data ...")
+        execSync(`cd ${root}/makuro && npx prisma db push && npx prisma generate`)
+        load.stop()
+        return console.log("success !, ulangi perintah".green)
+    }
+
+
     const makuro_package = require(`${root}/makuro/package.json`);
     const dep = makuro_package.dependencies
     const dep_list = Object.keys(dep);
@@ -38,6 +48,6 @@ const loading = require('loading-cli');
         load.stop()
         console.log(`${data}`.yellow)
     })
+}
 
-})()
-
+main()
