@@ -18,8 +18,20 @@ model User {
   password String
 }
 
-
 model UserAuth {
   id     Int @id @default(1)
   userId Int
+}
+
+model Dev {
+  id  Int     @id @default(1)
+  dev Boolean @default(true)
+}
+
+model Config {
+  id         Int     @id @default(1)
+  dev        Boolean @default(true)
+  url_local  String  @default("http://localhost:3004")
+  url_server String  @default("https://wibudev.wibudev.com")
+  version    String  @default("1.0.0")
 }

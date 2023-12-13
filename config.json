@@ -1,5 +1,5 @@
 {
-  "dev": true,
+  "dev": false,
   "svr_hostname": "srv442857",
   "env": {
     "server": {

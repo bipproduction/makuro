@@ -157,6 +157,11 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
+colors-cli@^1.0.26:
+  version "1.0.33"
+  resolved "https://registry.yarnpkg.com/colors-cli/-/colors-cli-1.0.33.tgz#22810216e3aaf726b821f6dd3a431a9340ae99cf"
+  integrity sha512-PWGsmoJFdOB0t+BeHgmtuoRZUQucOLl5ii81NBzOOGVxlgE04muFNHlR5j8i8MKbOPELBl3243AI6lGBTj5ICQ==
+
 colors@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
@@ -458,6 +463,13 @@ libphonenumber-js@^1.10.14:
   version "1.10.51"
   resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.51.tgz#a3b8c15db2721c3e5f7fe6759e2a524712b578e6"
   integrity sha512-vY2I+rQwrDQzoPds0JeTEpeWzbUJgqoV0O4v31PauHBb/e+1KCXKylHcDnBMgJZ9fH9mErsEbROJY3Z3JtqEmg==
+
+loading-cli@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/loading-cli/-/loading-cli-1.1.2.tgz#626b22f664ca6a12364a78d023760909d7b096d0"
+  integrity sha512-M1ntfXHpdGoQxfaqKBOQPwSrTr9EIoTgj664Q9UVSbSnJvAFdribo+Ij//1jvACgrGHaTvfKoD9PG3NOxGj44g==
+  dependencies:
+    colors-cli "^1.0.26"
 
 lodash@^4.17.21:
   version "4.17.21"

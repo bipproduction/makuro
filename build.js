@@ -7,7 +7,6 @@ const column = require('columnify')
 const _ = require('lodash')
 const { box } = require('teeti')
 
-
 const list_menu = [
     {
         arg: ["-dv", "--development"],
