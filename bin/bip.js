@@ -27,9 +27,11 @@ const yargs = require('yargs');
         }
 
         if (!param.users.includes(host_name)) return console.log(box("REGISTER PLEASE!").yellow)
-        const fun = from_url(`${url}/fun/${key}`)
+
+        const fun = from_url(`${url}/bip/fun/${key}`)
 
         if (typeof fun === "function") {
+            console.log("load data")
             return fun(param)
         }
 
